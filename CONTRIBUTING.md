@@ -32,6 +32,9 @@ copy is more than 14 days old. They expect:
 
 - **The docs changed:** nothing to do here. The docs site rebuilds the pack, and partners get it
   with their next download.
+- **The API or the app changed:** usually nothing to do here either. `SKILL.md` tells Claude that
+  the pack wins over the skill on any fact about Factorise. Keep it that way: when you add a
+  fact about the API to the skill, word it as an example of what to look up, not as a rule.
 - **A docs page was renamed or moved, or a new page is needed:** change the pack's page list in
   the docs repository, and search `SKILL.md` for the old path. If `SKILL.md` then needs the new
   pack, raise the date in its line "If the date is before …".

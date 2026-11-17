@@ -8,7 +8,8 @@ stop at the plan. Start test 1 in an empty folder, signed out of the docs site i
    - It names the four parts, and says nothing is sent before a yes.
    - It says the browser will open, then the docs site asks you to sign in and
      `factorise-docs-pack` downloads. A folder `factorise-docs` appears, and the file is gone from
-     Downloads. Run it again in the same folder: no browser opens.
+     Downloads. Run it again in the same folder: no browser opens, and it doesn't mention the
+     docs.
    - Round 1 has at most five numbered questions, each with a recommended answer.
    - It flags that production losses can't be loaded, and offers changeover-time readings instead.
    - The scenario card has every line filled in, with a key prefix such as `DRY-`.
@@ -41,4 +42,30 @@ stop at the plan. Start test 1 in an empty folder, signed out of the docs site i
 11. Close the browser tab during sign-in and wait for the timeout, then sign in and say "done".
     - It runs the script again, and picks up the downloaded pack without opening the browser.
 12. On Windows: the docs pack downloads and unpacks from the Code tab, also when the demos
-    folder has a space in its name.
+    folder has a space in its name. The `factorise-docs` folder is in the demos folder, and the
+    zip is gone from Downloads.
+13. On a brand-new environment, where Model Reflection was never refreshed.
+    - Before the plan, it gives the steps to refresh it and waits for "done". Nothing is sent
+      first.
+14. Set the date of `factorise-docs/.downloaded` to three weeks ago, and start a demo.
+    - It says the browser will open, and a new pack replaces the old one.
+15. With an account that can't read the plant (only the Webhook role), and with one that can.
+    - Either way the environment check works: it says what it couldn't see and asks you to
+      check that in the app. It never retries a read that was refused.
+16. After test 4: "remove the orders you made", then "delete line 1".
+    - It lists the orders and asks for a yes to that list. It refuses to delete the line, and
+      says that's done in the app.
+17. In a copy of `factorise-docs`, rename a page the skill names and fix its line in `INDEX.md`.
+    Then remove another page and its line.
+    - It finds the renamed page through the index and carries on. For the removed one it says
+      the pack has no page on that, and doesn't fill it in from memory.
+18. Build a second demo in the same environment, in a new session.
+    - It finds the saved login still works, and doesn't open the login window.
+    - It reuses nothing with the first demo's prefix, and no name shows twice in the app.
+18. In a folder that already has a `factorise-docs` folder with a file of your own in it.
+    - The script says it holds something that isn't a docs pack. Claude asks you to move it, and
+      your file is still there.
+19. Download any other zip in your browser, rename it `factorise-docs-pack.zip` in Downloads, and
+    start a demo in an empty folder.
+    - That file isn't used: the browser opens and the real pack downloads. Add a file `CLAUDE.md`
+      to a copy of the real pack's zip, in place of the download: it isn't in `factorise-docs`.
