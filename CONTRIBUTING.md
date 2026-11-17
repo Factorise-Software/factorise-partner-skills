@@ -1,12 +1,11 @@
 # Maintaining the partner plugin
 
-This repository is private for now, and is meant for partners: it becomes public when partners
-get it. It's a Claude plugin marketplace, `factorise`, with one plugin, `factorise-partner`. Write
-everything as if it were public already. Nothing internal goes in: no Jira, no internal hosts or
-names, no private repositories, nothing from the app's model.
+This repository is public, and is meant for partners. It's a Claude plugin marketplace,
+`factorise`, with one plugin, `factorise-partner`. Nothing internal goes in: no ticket keys, no
+internal hosts or names, no private repositories, nothing from the app's model.
 
-**No docs pages go in either.** The Factorise docs are private, and git history is public too
-once the repository is: a page that was ever committed stays readable.
+**No docs pages go in either.** The Factorise docs are private, and git history is public too:
+a page that was ever committed stays readable.
 
 ## Layout
 
@@ -19,7 +18,7 @@ once the repository is: a page that was ever committed stays readable.
 
 The skill reads the docs from a pack that the docs site builds and serves behind its login:
 `https://docs.factorise-suite.com/downloads/factorise-docs-pack.zip`. The partner's own browser
-downloads it, so Entra decides who gets it. The scripts download a new one when the partner's
+downloads it, so the docs site's login decides who gets it. The scripts download a new one when the partner's
 copy is more than 14 days old. They expect:
 
 - one top folder, `factorise-docs-pack/`;
@@ -44,9 +43,8 @@ copy is more than 14 days old. They expect:
 ## Release
 
 1. Review `git diff <last-tag>..main`. Check for anything internal:
-   `grep -rnE '[A-Z]{2,6}-[0-9]{2,}' plugins/` for ticket keys,
-   `grep -rniE 'jira|atlassian|mendix|studio pro|microflow|internal|github\.com/' plugins/`, and your own team's names and
-   project keys. Keep that list out of this repository.
+   `grep -rnE '[A-Z]{2,6}-[0-9]{2,}' plugins/` for ticket keys, and a search for your own
+   team's tools, names and project keys. Keep that list out of this repository.
 2. Run `claude plugin validate .`.
 3. Run the prompts in [docs/test-prompts.md](docs/test-prompts.md) against a demo environment.
 4. Bump `version` in `plugins/factorise-partner/.claude-plugin/plugin.json`. Without a bump,

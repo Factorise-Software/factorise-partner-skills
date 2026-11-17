@@ -5,8 +5,10 @@
 #   bash connect-mac.sh <environment host, such as acme.factorise-suite.com>
 set -u
 
-h="${1:-}"
-if ! [[ "$h" =~ ^[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$ ]]; then
+# Lower case, so one environment is never saved twice. A name, not a number: it starts with a
+# letter or digit and ends in letters.
+h=$(printf '%s' "${1:-}" | tr '[:upper:]' '[:lower:]')
+if ! [[ "$h" =~ ^[a-z0-9][a-z0-9-]*(\.[a-z0-9-]+)*\.[a-z]{2,}$ ]]; then
   echo "Not saved: the address should look like acme.factorise-suite.com, without https:// or a port."; exit 2
 fi
 
@@ -45,9 +47,12 @@ for v in "$u" "$p"; do
 done
 
 f="$HOME/.factorise/netrc"
+if [ -e "$f" ] && { [ ! -f "$f" ] || [ ! -r "$f" ]; }; then
+  echo "Not saved: the file with your saved logins can't be read, so it was left as it is."; exit 4
+fi
 umask 077
 mkdir -p "$HOME/.factorise"
 {
-  [ -f "$f" ] && awk -v h="$h" '!($1=="machine" && $2==h)' "$f"
+  [ -f "$f" ] && awk -v h="$h" '!($1=="machine" && tolower($2)==h)' "$f"
   printf 'machine %s login %s password %s\n' "$h" "$u" "$p"
 } > "$f.new" && mv "$f.new" "$f" && chmod 600 "$f" && echo "Saved"

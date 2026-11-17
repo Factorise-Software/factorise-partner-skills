@@ -97,4 +97,4 @@ needs one.
 
 Questions, or a demo that didn't come out the way you expected: contact your partner manager at
 Factorise Software. It helps to send the run folder Claude made, `factorise-demo-…`. It holds what
-was sent, never your password.
+was sent, the demo scenario and your environment's address, never your password.

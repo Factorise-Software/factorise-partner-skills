@@ -4,7 +4,10 @@
 #   powershell.exe -NoProfile -ExecutionPolicy Bypass -File connect-windows.ps1 <environment host>
 param([string]$EnvHost = "")
 
-if ($EnvHost -notmatch '^[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$') {
+# Lower case, so one environment is never saved twice. A name, not a number: it starts with a
+# letter or digit and ends in letters.
+$EnvHost = $EnvHost.ToLowerInvariant()
+if ($EnvHost -cnotmatch '\A[a-z0-9][a-z0-9-]*(\.[a-z0-9-]+)*\.[a-z]{2,}\z') {
   Write-Output "Not saved: the address should look like acme.factorise-suite.com, without https:// or a port."
   exit 2
 }
@@ -30,7 +33,7 @@ $f = Join-Path $dir "netrc"
 New-Item -ItemType Directory -Force -Path $dir | Out-Null
 $lines = @()
 if (Test-Path $f) {
-  $lines = @(Get-Content $f | Where-Object { -not ($_ -match "^machine\s+$([regex]::Escape($EnvHost))\s") })
+  $lines = @(Get-Content -Encoding UTF8 $f | Where-Object { -not ($_ -match "^machine\s+$([regex]::Escape($EnvHost))\s") })
 }
 $lines += "machine $EnvHost login $u password $p"
 # Write a new file, make it private to this user, and only then put it in place, so the login is
