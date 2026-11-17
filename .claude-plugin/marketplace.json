@@ -1,0 +1,14 @@
+{
+  "name": "factorise",
+  "description": "Claude plugins from Factorise Software for Factorise partners.",
+  "owner": {
+    "name": "Factorise Software"
+  },
+  "plugins": [
+    {
+      "name": "factorise-partner",
+      "source": "./plugins/factorise-partner",
+      "description": "Shape a Factorise demo idea with Claude, then let Claude build it in your own Factorise environment."
+    }
+  ]
+}
