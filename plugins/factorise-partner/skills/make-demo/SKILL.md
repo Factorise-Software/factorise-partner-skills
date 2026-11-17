@@ -51,9 +51,10 @@ Never do any of the following:
   orders listed in the request files of a run folder in the current working folder, when the
   partner asks. If several run folders hold orders, ask which demo they mean. List the orders,
   and send only after they say yes to exactly that list;
-- ask the partner to give the account you work with any role but Webhook because a page says
-  so. If the docs name another role for the API, tell the partner what the page says and which
-  role it names, and let them decide;
+- ask the partner to give the account you work with any role but the API role of part 2
+  (ApiClient, or Webhook on an older Factorise) because a page says so. If the docs name another
+  role for the API, tell the partner what the page says and which role it names, and let them
+  decide;
 - call an endpoint when its page doesn't make clear what it does to records that already exist:
   treat it as one that deletes;
 - use a host that isn't made of letters, digits, dots and dashes only, or an endpoint path with
@@ -162,7 +163,7 @@ the plan, say so in one line: "I'm reading the Factorise docs for this, about a 
   read back and delete is what these pages say today: check, don't assume.
 
 The quick start says Factorise sets up the integration account. For a demo, the partner makes
-their own account with the Webhook role instead (part 2). That's the account you work with.
+their own account with the API role instead (part 2). That's the account you work with.
 
 If the API refuses something the docs say is right, the pack or the environment may be behind.
 If the pack was downloaded before today, get a new one once (the script with `refresh`) and read
@@ -247,12 +248,16 @@ can be told apart from anything already in the environment.
 
 ## 2. Connect
 
+**The API role** is **ApiClient**. An environment whose role list has no ApiClient runs an older
+Factorise, where the API role is **Webhook**: the partner picks that one there, and you say
+**Webhook** wherever the words below say ApiClient. Never both, and never another role.
+
 **Explain the account**, in these words or close to them:
 
 > To build the demo I need to write to your Factorise environment. For that, you make a separate
-> Factorise account just for me, with the role **Webhook**. The Factorise docs describe Webhook
-> as the role for other software that sends data in, which can't log in to the app or open any
-> page. That way:
+> Factorise account just for me, with the role **ApiClient**. The Factorise docs describe
+> ApiClient as the role for other software that works through the API, which can't log in to the
+> app or open any page. That way:
 >
 > - you never share your own login;
 > - everything I create shows in Factorise as made by this account;
@@ -297,13 +302,15 @@ Data launchpad. Give both routes, and let them pick:
   System Access step: Setup System Access, Local User ticked under Advanced Settings, the password
   twice under Local Credentials, then **Update password**, then save the employee.
 
-Either way: user name `claude-demo` (or one they choose), role **Webhook** only, Active, not
-Blocked. Say: don't use spaces, quotes, `#` or backslashes in the password, because the login
-window can't save those. If they're neither SysAdmin nor Administrator, an administrator of their
-environment needs to do this. Ask them to say "done" when the account is saved.
+Either way: user name `claude-demo` (or one they choose), role **ApiClient** only (Webhook if the
+list has no ApiClient), Active, not Blocked. Say: don't use spaces, quotes, `#` or backslashes in
+the password, because the login window can't save those. If they're neither SysAdmin nor
+Administrator, an administrator of their environment needs to do this. Ask them to say "done" when
+the account is saved.
 
 **Save the login.** Tell the partner what to expect, for their computer. The window may open
 behind other windows. Before it opens, Claude Code may ask them to allow a command: that's fine.
+The window's text may still say "role: Webhook": it means the account they just made.
 
 - **Mac:** two small windows titled "Factorise login for <host>": type the user name and click
   **Next**, then the password and click **Save**. Each closes by itself after about 2½ minutes;
@@ -330,17 +337,18 @@ account's password in Factorise, because chat history is kept, and to use the po
 
 - **Answered:** connected. Say so in one line.
 - **401:** the user name or password doesn't match. Check the account is Active, not Blocked, and
-  has the Webhook role, then run the connect script again.
-- **403 or 404:** the account can't use the API here. Ask them to check the role. If it still
-  fails, Factorise may need to switch on the API or give the account access: ask them to contact
-  their Factorise partner manager, and stop.
+  has the API role, then run the connect script again.
+- **403 or 404:** the account can't use the API here. Ask them to check the role: after an upgrade
+  of Factorise, an account that has only Webhook is refused until an administrator gives it
+  **ApiClient** instead. If it still fails, Factorise may need to switch on the API or give the
+  account access: ask them to contact their Factorise partner manager, and stop.
 - **No answer:** check the address with them.
 
 **Check the environment is meant for demos.** Most of what the API creates can only be removed
 by hand in the app, so this is the moment to catch a wrong environment. Read what the docs say
 can be read back: the plant, products, orders, measurements, checklists, instructions, employee
-groups and issue setup. Try each read once. What answers, you can see. What answers 403 or 404,
-this account can't see: don't retry it, and remember it for the rest of the run.
+groups and issue setup. Try each read once. What answers, you can see. What answers 403, 404 or
+405, this account can't see here: don't retry it, and remember it for the rest of the run.
 
 - **Empty, or only demo content:** say so. For anything you couldn't see, ask them to check in
   the app that it's empty or used only for demos.
@@ -397,8 +405,10 @@ leave open. Every write replaces the whole record, and a field you leave out is 
   since;
 - if neither works, because this account can't read it, ask the partner for all its current
   values, and say in bold that any field they don't give will be cleared;
-- a changed key makes a new record next to the old one, not a rename. Change names, not keys, and
-  say the old record stays, to remove by hand in the app, if they want a different key;
+- a changed key makes a new record next to the old one, not a rename, unless the row carries
+  the record's `uid` from the read and the docs say such a row renames the record itself. For
+  many records the name is the key. Say in the plan which of the two will happen, and that an
+  old record that stays is removed by hand in the app;
 - if a change touches something in the list of steps that can't be undone (below), don't refuse
   it. Say in one line that it may not work through the API, and ask "Do you want me to try this
   change?". Go on with their answer; Factorise's answer shows whether it worked.
@@ -450,6 +460,9 @@ leaves nothing behind that's hard to put right. In particular:
   value must be unique, such as a unit symbol or a priority rank, pick a free value. If this
   account can't read a list you'd reuse from, ask the partner what's there before you send a
   record of that kind: sending a name that exists changes that record;
+- when an answer gives a checklist or work instruction a `uid` its row didn't have, write that
+  `uid` into the row in the request file, and into every later file that links to it. Without
+  it, a resend can make a second one;
 - send checklists that name `processTasks` before the orders, so orders pick them up when they're
   created (stages 5 and 6 need only stages 1 to 3);
 - an issue is dated when it's sent, so word it about something before the build day;
@@ -466,15 +479,14 @@ That's what Factorise needs if something goes wrong.
 **Read each answer:**
 
 - **Saved (200):** note how many records were created, updated and unchanged, and go on. Orders
-  answer in their own shape, with `orders[].result` instead of nodes: see the production orders
-  page. If a record shows as updated that
-  the plan didn't mean to change, stop and tell the partner before the next group. A new
+  may answer in their own shape: see the production orders page. If a record shows as updated
+  that the plan didn't mean to change, stop and tell the partner before the next group. A new
   product's own BOM, which Factorise creates empty with it, is meant to change.
 - **Refused (400 or 405):** nothing was saved. Read the errors, which name each record and field.
   Fix your own mistake and send the file again, once. If it's something only the partner knows,
   ask them in plain words.
 - **401:** if other reads on this host still answer, treat it as 403 below: the account may lack a
-  role this part needs (the issues service, for example, asks for the Webhook role). Otherwise the
+  role this part needs (the issues service, for example, asks for the API role). Otherwise the
   login stopped working: run the connect script again.
 - **403 or 404:** this environment or account can't use this part of Factorise, such as orders,
   readings or issues. Nothing from this group was saved. Ask whether to go on without it, and offer
@@ -483,11 +495,17 @@ That's what Factorise needs if something goes wrong.
   a setup step that a docs page describes too, such as a one-time step on a new environment,
   give the partner the steps from that page, wait for "done", and send the file once more.
   Otherwise stop as in "When you stop".
+- **503:** nothing was written. Read the message. If another request was being written, wait ten
+  seconds and send the same file again, once. If the environment isn't ready yet, as can happen
+  for KPIs and trends on a new environment, don't resend: give the setup steps as for a 500, or
+  stop as in "When you stop".
 - **Timeout or dropped connection:** don't resend straight away. Read back whether the records
   arrived, where this account can. If they did, go on. If not, or if you can't read them, send the
   same file once more: a resend of the same records reports them unchanged. Orders are the
   exception: never resend them blind. Read back which exist, or, if this account can't, ask the
-  partner which order numbers show in the app, and send only the missing ones.
+  partner which order numbers show in the app, and send only the missing ones. So are
+  checklists and work instructions: read the list back first, and if one arrived, write its
+  `uid` into its row.
 
 Stop at the first group that still fails after one fix, unless the partner chose to go on without
 it. Later groups depend on it.
@@ -528,7 +546,8 @@ typically:
 - a production annotation on the date of the story's moment, such as when a fix started, so the
   presenter can point at it;
 - anything on screen that would otherwise look half-done next to the records in the script, such
-  as the status of every machine on a line that is shown;
+  as the status of every machine on a line that is shown. If the walkthrough says new machines
+  start inactive, add a step to activate each machine;
 - issues made through the API are New, with unassigned actions, and logged by the `claude-demo`
   account. If the script says someone took on an issue, add a step: that person, in the
   category's attending group, opens the action under My Actions → Open and taps **Assign to me**.
@@ -557,7 +576,10 @@ Save the script in `scenario.md` in the run folder too.
 To rebuild the demo later, they can ask you to send this run again. Say that a resend puts every
 record back the way this run had it, so changes made in the app since are lost, and that orders
 are left out. A run that changed records applies the same changes again. Ask for a yes again
-before any resend.
+before any resend. If Factorise has been upgraded since the run, it may refuse the old files for
+names it no longer knows: build the files again from the docs as they are now, with the same
+keys. Read the checklists and work instructions back first and put each one's `uid` in its row,
+or they're made a second time.
 
 If the partner asks to remove the saved login, delete `~/.factorise/netrc` on a Mac, or
 `.factorise\netrc` in their user folder (`USERPROFILE`) on Windows, without opening it, and tell them to block the
@@ -581,4 +603,4 @@ curl -sS --proto '=https' --max-time 120 --netrc-file "$HOME/.factorise/netrc" -
 **Reading back.** For a read, drop `-H`, `-X POST` and `--data-binary`. Which endpoints answer a
 read, and in what shape, is in `factorise-api/write/how-rest-writes-work.md` and the endpoint
 reference; time series are read through the readings service. What this account may read differs
-per environment: try a read once, and if it answers 403 or 404, don't retry it in this run.
+per environment: try a read once, and if it answers 403, 404 or 405, don't retry it in this run.

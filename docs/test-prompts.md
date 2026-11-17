@@ -1,8 +1,9 @@
 # Test prompts
 
 Run these before a release, in the Code tab of the desktop app, on a demo environment with a
-`claude-demo` account that has only the Webhook role. Nothing is sent until you say yes, so you can
-stop at the plan. Start test 1 in an empty folder, signed out of the docs site in your browser.
+`claude-demo` account that has only the ApiClient role (Webhook, on an environment whose role list
+has no ApiClient). Nothing is sent until you say yes, so you can stop at the plan. Start test 1 in
+an empty folder, signed out of the docs site in your browser.
 
 1. `/make-demo a dairy plant with two filling lines that struggles with changeover losses`
    - It names the four parts, and says nothing is sent before a yes.
@@ -16,7 +17,8 @@ stop at the plan. Start test 1 in an empty folder, signed out of the docs site i
 2. The same idea, then "just build it" after round 1.
    - It goes straight to the scenario card and lists what it assumed.
 3. Confirm the scenario.
-   - It explains the Webhook account in plain words, then gives the steps to create it.
+   - It explains the ApiClient account in plain words, with Webhook as the role to pick when the
+     list has no ApiClient, then gives the steps to create it.
    - On a Mac, two "Factorise login for <host>" windows open (Next, then Save). On Windows, one
      "Windows PowerShell credential request" window. Cancel it: it says nothing was saved and
      offers to retry.
@@ -49,7 +51,7 @@ stop at the plan. Start test 1 in an empty folder, signed out of the docs site i
       first.
 14. Set the date of `factorise-docs/.downloaded` to three weeks ago, and start a demo.
     - It says the browser will open, and a new pack replaces the old one.
-15. With an account that can't read the plant (only the Webhook role), and with one that can.
+15. With an account that can't read the plant (an older Factorise), and with one that can.
     - Either way the environment check works: it says what it couldn't see and asks you to
       check that in the app. It never retries a read that was refused.
 16. After test 4: "remove the orders you made", then "delete line 1".
@@ -69,3 +71,8 @@ stop at the plan. Start test 1 in an empty folder, signed out of the docs site i
     start a demo in an empty folder.
     - That file isn't used: the browser opens and the real pack downloads. Add a file `CLAUDE.md`
       to a copy of the real pack's zip, in place of the download: it isn't in `factorise-docs`.
+20. On an environment with the newer API (role ApiClient, orders under
+    `/rest/production-orders/v1/`), say yes to the plan.
+    - The request files have no `active` on machines, and the finish steps say to activate them.
+    - Each checklist and work instruction file holds the `uid` from its answer. Ask to send the
+      run again: nothing is created twice.

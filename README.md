@@ -68,9 +68,10 @@ address, such as `acme.factorise-suite.com`. If it's anything else, choose No an
 
 ## About the account Claude uses
 
-Claude asks you to create a Factorise user, such as `claude-demo`, with only the **Webhook** role.
-The Factorise docs describe Webhook as the role for other software that sends data in, for
-example machines, and say it can't log in to the app or open any page. So you never share your
+Claude asks you to create a Factorise user, such as `claude-demo`, with only the **ApiClient**
+role. The Factorise docs describe ApiClient as the role for other software that works through
+the API, and say it can't log in to the app or open any page. (An older Factorise has no
+ApiClient: there the role is **Webhook**.) So you never share your
 own login, what Claude creates is made by that account, and you can block or delete it when
 you're done.
 
@@ -78,7 +79,7 @@ The password goes from a pop-up window straight into a small file on your comput
 user can open. It never goes into the chat. Claude is told never to open that file: the program
 that sends the data reads the login from it. That's an instruction Claude follows, not a lock,
 and the file isn't encrypted, so use a password you use nowhere else and give the account only
-the Webhook role. To remove it, ask Claude to "remove my saved Factorise
+that one role. To remove it, ask Claude to "remove my saved Factorise
 login", and block the account in Factorise.
 
 ## About the docs
