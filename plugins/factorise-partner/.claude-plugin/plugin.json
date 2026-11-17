@@ -1,7 +1,7 @@
 {
   "name": "factorise-partner",
   "displayName": "Factorise for partners",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Shape a Factorise demo idea with Claude, then let Claude build it in your own Factorise environment.",
   "author": {
     "name": "Factorise Software"
