@@ -34,15 +34,15 @@ plain chat, the Chrome side panel or a cloud session, say: "make-demo works from
 the Claude desktop app, in a Local session with a folder open, such as Documents/Factorise
 demos." and stop. On Linux, say it's set up for Mac and Windows only, and stop.
 
-**See what they're asking for**, and take the shortest route there:
+**See what they're asking for**, and take the shortest route there. Every route but the last
+starts with the docs check (see "The docs"):
 
-- **A new demo.** Run the docs check first (see "The docs"). Then open with one message: the
-  four parts in four short lines, that nothing is sent to their environment until they've seen
-  the plan and said yes, and, if the docs must be downloaded, what to expect of that. Then
-  part 1.
+- **A new demo.** Open with one message: the four parts in four short lines, that nothing is
+  sent to their environment until they've seen the plan and said yes, and, if the docs must be
+  downloaded, what to expect of that. Then part 1.
 - **A change to a demo that's built** ("rename line 2", "make the bad week worse"), sending a
-  demo again, or removing its orders. No interview: get the docs, connect, and follow "Change a
-  demo that's there" in build.md.
+  demo again, or removing its orders. No interview: connect, and follow "Change a demo that's
+  there" in build.md.
 - **A demo that was shaped but not built.** A run folder in the current working folder has a
   `scenario.md` and no `SEND-LOG.md`. Show that scenario, ask whether it still stands, with a new
   demo date if the old one has passed, and go on with part 2.

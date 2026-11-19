@@ -1,10 +1,40 @@
 # Part 2: Connect
 
-In order: the account explained, the address, the account steps, the login window, then three
-checks (the connection, the environment, what must be set up first). Removing the saved login is at the end. The ground rules
+In order: two questions, the account, the login window, then three checks (the connection, the
+environment, what must be set up first). Removing the saved login is at the end. The ground rules
 and "How to call the API" are in SKILL.md.
 
-## The account
+## Two questions first
+
+Ask both in one short message, as plain questions, and nothing else yet:
+
+1. the address of their Factorise environment;
+2. whether they already have an account for you in it: an account with the API role, such as
+   `claude-demo` from an earlier demo.
+
+**The address.** Accept an address such as `acme.factorise-suite.com`, or a link to any Factorise
+page, and take its host, without a port. Repeat the host back in bold in your next message, and
+go on: they confirm it once, by typing it back after the environment check below. Nothing is
+written before that.
+
+The login goes to this address with the first read. So if the host doesn't end in
+`.factorise-suite.com`, say that plainly before anything else: "This isn't an address on
+factorise-suite.com. Only go on if you're sure it's your Factorise environment." Go on only
+after a yes to that.
+
+## They have an account
+
+Don't explain the account again. Run "Check the connection" below with the login that's saved on
+this computer.
+
+- **It answers:** say you're still connected with the account they made earlier, and go on to
+  the checks. If the address is also the host that a run folder's `SEND-LOG.md` here names, the
+  environment was checked and confirmed for that build: skip the two checks after the connection
+  as well. The address they gave, and their yes to the plan that names it, confirm it this time.
+- **It doesn't:** the login isn't saved on this computer, or it changed. Say so, and go to "The
+  login window" with that account.
+
+## They have no account yet
 
 **The API role** is the one the API guide's Access and environments page names: **ApiClient**.
 Go by that page for the role, also where the User Management page's list of roles doesn't show
@@ -13,15 +43,11 @@ only that role. An environment whose own role list has no ApiClient runs an olde
 where the API role is **Webhook**: the partner picks that one there, and you say Webhook
 wherever this file says ApiClient. The account never gets both, and never another role.
 
-**If they've connected before**, because a run folder here has a `SEND-LOG.md` or they say so,
-ask only for the environment's address and run "Check the connection" below with the login
-that's saved. If it answers, say you're still connected with the account they made earlier, and
-skip the account and the login window. If the address is also the host that run folder's
-`SEND-LOG.md` names, the environment was checked and confirmed for that build: skip the two
-checks after the connection as well. The address they gave, and their yes to the plan that names
-it, confirm it this time. If the connection doesn't answer, carry on here.
+**One message holds all of it:** why the account, then the steps to make it, then the request to
+say "done". Never say you'll explain how and leave the steps for later: read the pages first, and
+send the explanation and the steps together.
 
-**Explain the account**, in these words or close to them:
+Why the account, in these words or close to them:
 
 > To build the demo I need to write to your Factorise environment. For that, you make a separate
 > Factorise account just for me, with the role **ApiClient**. The Factorise docs describe
@@ -36,38 +62,14 @@ it, confirm it this time. If the connection doesn't answer, carry on here.
 > a small file that only your user on this computer can open, and I never open it. Use a
 > password you don't use anywhere else.
 
-If they ask whether it's safe, answer in these terms and don't promise more:
-
-- you never open that file; the program that sends the data reads the login from it directly, so
-  it never shows up in this chat;
-- Claude Code asks them before it runs a command on their computer, unless they've told it to
-  stop asking;
-- you only add records with this demo's prefix, and change only records they name; you show the
-  plan before anything is sent, with old and new values for every change; you delete nothing,
-  except orders you made yourself, and only when they ask. Other removing happens in the app.
-
-End that message with two questions: the address of their environment, and whether they're a
-SysAdmin or an Administrator there.
-
-## The address
-
-Accept an address such as `acme.factorise-suite.com`, or a link to any Factorise page, and take
-its host, without a port. Repeat the host back in bold in your next message, and go on: they
-confirm it once, by typing it back after the environment check below. Nothing is written before
-that.
-
-The login goes to this address with the first read. So if the host doesn't end in
-`.factorise-suite.com`, say that plainly before anything else: "This isn't an address on
-factorise-suite.com. Only go on if you're sure it's your Factorise environment." Go on only
-after a yes to that.
-
-## The account steps
-
-Give the steps for their role only, from the User Management page: "Where to find" for how to
-get there, and "Create a user account" for the route. A SysAdmin makes the account in User
-Management. An Administrator makes it from the record of a new employee, such as "Claude demo",
-made with the steps of the Employees page; it shows in their employee list. If they're neither,
-an administrator of their environment needs to do this: give them the steps to pass on.
+The steps come from the User Management page: "Where to find" for how to get there, and "Create
+a user account" for the route. Don't ask which kind of administrator they are. Give the route
+from the record of a new employee, such as "Claude demo", as numbered steps: that page calls it
+the normal way, and it works for an Administrator and a SysAdmin. The employee is made with the
+steps of the Employees page, and shows in their employee list. Under the steps, add in a line or
+two that a SysAdmin can make the account in User Management instead, and how. If they turn out
+to be neither, an administrator of their environment needs to do this: give them the steps to
+pass on.
 
 Give every step of the route, such as **Update password** before saving the employee: an account
 without a saved password can't connect. With these values:
@@ -79,7 +81,17 @@ without a saved password can't connect. With these values:
 - a password without spaces, quotes, `#` or backslashes, because the login window can't save
   those.
 
-Ask them to say "done" when the account is saved.
+End with: say "done" when the account is saved. Then go to "The login window".
+
+If they ask whether it's safe, answer in these terms and don't promise more:
+
+- you never open that file; the program that sends the data reads the login from it directly, so
+  it never shows up in this chat;
+- Claude Code asks them before it runs a command on their computer, unless they've told it to
+  stop asking;
+- you only add records with this demo's prefix, and change only records they name; you show the
+  plan before anything is sent, with old and new values for every change; you delete nothing,
+  except orders you made yourself, and only when they ask. Other removing happens in the app.
 
 ## The login window
 
@@ -106,7 +118,8 @@ Factorise first.
 
 ## Check the connection
 
-Make the read-only call that the Quick start makes first.
+Make the read-only call that the Quick start makes first, with the command in "How to call the
+API", not the one on that page.
 
 - **Answered:** connected. Say so in one line.
 - **401:** the user name or password doesn't match. Ask them to check the account is Active, not

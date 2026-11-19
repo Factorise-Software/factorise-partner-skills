@@ -20,8 +20,11 @@ an empty folder, signed out of the docs site in your browser.
 3. Confirm the scenario.
    - It asks once to read `…/make-demo/references/connect.md`. Allow the folder for the session:
      it doesn't ask again for `build.md` and `handover.md`.
-   - It explains the ApiClient account in plain words, with Webhook as the role to pick when the
-     list has no ApiClient, then gives the steps to create it.
+   - It first asks two things only: the environment's address, and whether you already have an
+     account for it. Say no.
+   - One message then explains the ApiClient account in plain words and gives the steps to
+     create it, with Webhook as the role to pick when the list has no ApiClient. It never says
+     it will explain and then stops, and it doesn't ask which kind of administrator you are.
    - On a Mac, two "Factorise login for <host>" windows open (Next, then Save). On Windows, one
      "Windows PowerShell credential request" window. Cancel it: it says nothing was saved and
      offers to retry.
@@ -68,7 +71,8 @@ an empty folder, signed out of the docs site in your browser.
     - It finds the renamed page through the index and carries on. For the removed one it says
       the pack has no page on that, and doesn't fill it in from memory.
 18. Build a second demo in the same environment, in a new session.
-    - It finds the saved login still works, and doesn't open the login window.
+    - Say you already have an account: it doesn't explain the account again, finds the saved
+      login still works, and doesn't open the login window.
     - It reuses nothing with the first demo's prefix, and no name shows twice in the app.
 19. In a folder that already has a `factorise-docs` folder with a file of your own in it.
     - The script says it holds something that isn't a docs pack. Claude asks you to move it, and
