@@ -10,14 +10,18 @@ sentence, and Claude helps you shape it and then builds it in your own Factorise
 1. **Gets the docs.** The first time, your browser opens and downloads the Factorise docs for
    Claude to read. Sign in with your Microsoft account for the Factorise docs if it asks.
 2. **Shapes your idea.** Claude asks a few short rounds of questions: who watches the demo, what
-   story it tells, what the plant looks like. Every question comes with a recommended answer, so
-   you can say "yes" and move on, or "just build it" at any time.
+   story it tells, what the plant looks like. It asks only what your idea leaves open, and every
+   question comes with a recommended answer, so you can say "yes" and move on, or "just build it"
+   at any time.
 3. **Connects to your environment.** You make a Factorise account just for Claude and type its
    password into a pop-up window on your computer, not into the chat.
 4. **Builds the demo** after you've seen the plan and said yes: plant, lines, machines, products,
    production orders, KPIs with weeks of history, a work instruction, a checklist and issues.
 5. **Hands over** what's there, the few things to finish in the app, and a step-by-step demo
    script.
+
+You don't have to finish in one go. Once you've said yes to the scenario, Claude saves it, and
+"continue with my demo" in a new session picks it up from there.
 
 Later, ask Claude to change a demo you built, such as "rename line 2" or "make the bad week
 worse". It shows each change, old and new, before it sends anything.
@@ -59,6 +63,10 @@ While building, Claude asks before it runs a command or saves a file on your com
 the demo's files in a folder `factorise-demo-…` inside your demos folder, one file per group of
 records, so expect a number of these questions. For saving files, you can choose to allow them
 for the whole session.
+
+Claude also asks to read a file from the plugin's own folder, with a path that ends in
+`make-demo/references`, when it starts connecting, building and handing over. Those are its
+instructions for that part. Allow reading from that folder for the whole session.
 
 The commands look technical. The docs download and the login window start with `bash` (Mac) or
 `powershell` (Windows). Each send or read starts with `curl` and has one web address near the

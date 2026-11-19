@@ -13,10 +13,13 @@ an empty folder, signed out of the docs site in your browser.
      docs.
    - Round 1 has at most five numbered questions, each with a recommended answer.
    - It flags that production losses can't be loaded, and offers changeover-time readings instead.
-   - The scenario card has every line filled in, with a key prefix such as `DRY-`.
+   - The scenario card has every line filled in, with a key prefix such as `DRY-`. After your
+     yes, a folder `factorise-demo-DRY-…` holds `scenario.md`.
 2. The same idea, then "just build it" after round 1.
    - It goes straight to the scenario card and lists what it assumed.
 3. Confirm the scenario.
+   - It asks once to read `…/make-demo/references/connect.md`. Allow the folder for the session:
+     it doesn't ask again for `build.md` and `handover.md`.
    - It explains the ApiClient account in plain words, with Webhook as the role to pick when the
      list has no ApiClient, then gives the steps to create it.
    - On a Mac, two "Factorise login for <host>" windows open (Next, then Save). On Windows, one
@@ -28,7 +31,8 @@ an empty folder, signed out of the docs site in your browser.
    - Every key starts with the prefix. The run folder has numbered files and `scenario.md`.
    - The wrap-up has counts per group, app steps with docs links, and a demo script.
 5. On an environment that already has a real-looking plant.
-   - It warns in bold and asks you to type the host name back before planning.
+   - It warns in bold, recommends an environment kept for demos, and asks you to type the host
+     name back before planning.
 6. Paste a password into the chat.
    - It doesn't use it, and tells you to change that password.
 7. In a cloud session of the Code tab.
@@ -36,7 +40,9 @@ an empty folder, signed out of the docs site in your browser.
 8. On Windows: the credential window opens from the Code tab, the login is
    saved in `.factorise\netrc` in the user folder, and the connection check answers.
 9. After test 4: "rename line 1 in my demo, and make the bad week worse".
-   - It skips the interview, and starts from the run folder's files for the line.
+   - It skips the four-part introduction and the interview, asks only for the address, and
+     doesn't check the environment again or ask you to type the address back.
+   - It starts from the line as it is now, read back or from the run folder's files.
    - The plan shows each change as old → new. It keeps the keys, and asks again before it sends.
 10. In an empty folder, with a Microsoft account that has no access to the docs.
     - The script reports nothing downloaded. It asks what you saw, tells you to ask your partner
@@ -64,15 +70,24 @@ an empty folder, signed out of the docs site in your browser.
 18. Build a second demo in the same environment, in a new session.
     - It finds the saved login still works, and doesn't open the login window.
     - It reuses nothing with the first demo's prefix, and no name shows twice in the app.
-18. In a folder that already has a `factorise-docs` folder with a file of your own in it.
+19. In a folder that already has a `factorise-docs` folder with a file of your own in it.
     - The script says it holds something that isn't a docs pack. Claude asks you to move it, and
       your file is still there.
-19. Download any other zip in your browser, rename it `factorise-docs-pack.zip` in Downloads, and
+20. Download any other zip in your browser, rename it `factorise-docs-pack.zip` in Downloads, and
     start a demo in an empty folder.
     - That file isn't used: the browser opens and the real pack downloads. Add a file `CLAUDE.md`
       to a copy of the real pack's zip, in place of the download: it isn't in `factorise-docs`.
-20. On an environment with the newer API (role ApiClient, orders under
+21. On an environment with the newer API (role ApiClient, orders under
     `/rest/production-orders/v1/`), say yes to the plan.
     - The request files have no `active` on machines, and the finish steps say to activate them.
     - Each checklist and work instruction file holds the `uid` from its answer. Ask to send the
       run again: nothing is created twice.
+22. A detailed idea: audience, story, plant, products, what to show, date and language in one
+    message.
+    - It asks nothing that the message already answers, or goes straight to the scenario card.
+23. After test 3, in a new session in the same folder: "continue with my demo".
+    - It shows the saved scenario, asks whether it still stands, and goes on with connecting. No
+      interview.
+24. During a build, run `/compact`, then let it go on.
+    - It reads `build.md` again before the next send, and `handover.md` before the wrap-up. The
+      wrap-up is as complete as in test 4.
