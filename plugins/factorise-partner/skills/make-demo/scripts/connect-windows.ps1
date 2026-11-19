@@ -14,7 +14,7 @@ if ($EnvHost -cnotmatch '\A[a-z0-9][a-z0-9-]*(\.[a-z0-9-]+)*\.[a-z]{2,}\z') {
 
 $cred = $null
 try {
-  $cred = Get-Credential -Message "Factorise login for $EnvHost. Enter the account you made for Claude (role: Webhook). The password goes straight into a file only you can read, not into the chat."
+  $cred = Get-Credential -Message "Factorise login for $EnvHost. Enter the account you made for Claude. The password goes straight into a file only you can read, not into the chat."
 } catch { $cred = $null }
 if ($null -eq $cred) { Write-Output "Cancelled. Nothing saved."; exit 1 }
 
