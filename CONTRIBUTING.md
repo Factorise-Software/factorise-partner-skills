@@ -25,7 +25,7 @@ copy is more than 14 days old. They expect:
 - in it `pack.json`, such as `{"format": 1, "built": "2026-11-17"}`. Raise `format` only for a
   change old plugin versions can't read: they then ask the partner to update;
 - `INDEX.md`, listing each page with its address on the site;
-- the pages as plain Markdown, at the paths `SKILL.md` names, such as `factorise-api/limits.md`.
+- the pages as plain Markdown, at the paths `SKILL.md` names, such as `factorise-api/reference/limits.md`.
 
 ## Change something
 

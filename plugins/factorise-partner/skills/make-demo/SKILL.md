@@ -113,7 +113,7 @@ counts as "Needed": the script renews it.
 It prints one line:
 
 - **"Ready: docs pack of <date>":** go on. Don't mention the docs again unless they ask. If the
-  date is before 2026-11-04, this version of make-demo needs newer pages: say so, and run the
+  date is before 2026-11-19, this version of make-demo needs newer pages: say so, and run the
   script again with `refresh` as a second argument.
 - **"Ready: docs pack of <date>, downloaded more than 14 days ago. A new one didn't arrive.":** go
   on with the pack that's there, and tell the partner in one line that the docs on this computer
@@ -151,14 +151,14 @@ the plan, say so in one line: "I'm reading the Factorise docs for this, about a 
   shows), `guides/common-configurations/` (batch, continuous line, multi-stage assembly),
   `guides/configuration-of-master-data/`, `guides/configuring-factorise/` (what a module needs set
   up in the app) and `using-factorise/` (what a user does on the shop floor).
-- **What only the app can set up**, for finish steps: whatever `factorise-api/limits.md` says is
+- **What only the app can set up**, for finish steps: whatever `factorise-api/reference/limits.md` says is
   done in the app or not covered, such as boards and their tiles, with the how-to from the
   matching page under `guides/` or `using-factorise/`. When the partner asks about connecting
   machines or an ERP, answer from the IT Connect and OT Connect pages: that's set up in the app,
   not by you.
 - **How the API works**, to build it: start with `factorise-api/quick-start.md`,
-  `factorise-api/limits.md`, `factorise-api/write/how-rest-writes-work.md` and
-  `factorise-api/write/walkthrough.md`. Then the page for each group you build, and
+  `factorise-api/reference/limits.md`, `factorise-api/concepts/how-rest-writes-work.md` and
+  `factorise-api/tutorial.md`. Then the page for each group you build, and
   `factorise-api/reference/rest-endpoints.md` for every field. What the API can create, change,
   read back and delete is what these pages say today: check, don't assume.
 
@@ -206,7 +206,7 @@ These must be clear before you write the scenario:
 
 Raise these in the round where they come up:
 
-- **What the API can't create** (`factorise-api/limits.md`). For example, production losses and
+- **What the API can't create** (`factorise-api/reference/limits.md`). For example, production losses and
   order confirmations are recorded in the app, not loaded. When the story needs one, say so and
   offer what comes closest: a changeover-time data set with weeks of readings and a KPI on it shows
   changeover loss without recorded losses.
@@ -310,7 +310,6 @@ the account is saved.
 
 **Save the login.** Tell the partner what to expect, for their computer. The window may open
 behind other windows. Before it opens, Claude Code may ask them to allow a command: that's fine.
-The window's text may still say "role: Webhook": it means the account they just made.
 
 - **Mac:** two small windows titled "Factorise login for <host>": type the user name and click
   **Next**, then the password and click **Save**. Each closes by itself after about 2½ minutes;
@@ -365,7 +364,8 @@ the API can't create. From what you just read back, work out which of those are 
 for example, the employee groups an issue category names, if this account can neither read nor
 create them. Give the partner the steps from the docs page, with who can do them, and wait for
 "done". If you can't tell whether a setup step was done, ask. It's far better to catch this now
-than halfway through the build.
+than halfway through the build. Name each such step: for KPIs and trends, the quick start's
+"Before you begin" asks for Model Reflection to be synchronised, and no read shows whether it was.
 
 ## 3. Plan and build
 
@@ -421,11 +421,11 @@ checklists, issues:
   it, such as the products or orders that refer to a changed unit or BOM;
 - what already exists and is reused or left alone;
 - what can't be undone through the API (below);
-- what the partner finishes in the app afterwards (see part 4 and `factorise-api/limits.md`).
+- what the partner finishes in the app afterwards (see part 4 and `factorise-api/reference/limits.md`).
 
 Ask: "Shall I build this in `<host>`?" One yes covers every group. Send them in order.
 
-**Some steps can't be undone through the API.** Take them from `factorise-api/limits.md` and the
+**Some steps can't be undone through the API.** Take them from `factorise-api/reference/limits.md` and the
 page of each group, and name in the plan the ones this build touches. When this was written they
 were, for example: most records can be removed only in the app; a master routing's structure
 can't be changed once it exists; orders can't be changed or renamed once created; a published
@@ -437,7 +437,7 @@ work instruction or checklist changes only by publishing a new version.
 `01-tier-categories.json`. Make long files, such as weeks of readings, with a short script in
 what the computer certainly has: the shell on a Mac, PowerShell on Windows. Don't count on
 Python or Node being there. Save the scenario there as `scenario.md` too. Follow the load order in
-the walkthrough, and the field rules of each page. Within that order, send what can't be changed
+the tutorial, and the field rules of each page. Within that order, send what can't be changed
 afterwards, such as orders, as late as what depends on it allows: a refusal earlier on then
 leaves nothing behind that's hard to put right. In particular:
 
@@ -448,7 +448,7 @@ leaves nothing behind that's hard to put right. In particular:
   name in brackets, such as "Changeover time (DRY)", and say so in the plan;
 - never send `isDefaultInitialState: true`: it moves the environment's default status. Give each
   product its `initialItemStatus` instead;
-- for anything orders run on, follow the walkthrough's proven path: station processes whose first
+- for anything orders run on, follow the tutorial's proven path: station processes whose first
   task creates the product, and a master routing on the finished product;
 - never reuse or change a record that carries another demo's prefix: it's that demo's, and may
   be changed or removed with it. And before you send, compare the names in your files with what
@@ -497,7 +497,7 @@ That's what Factorise needs if something goes wrong.
   Otherwise stop as in "When you stop".
 - **503:** nothing was written. Read the message. If another request was being written, wait ten
   seconds and send the same file again, once. If the environment isn't ready yet, as can happen
-  for KPIs and trends on a new environment, don't resend: give the setup steps as for a 500, or
+  for KPIs and trends until Model Reflection is synchronised, don't resend: give the setup steps as for a 500, or
   stop as in "When you stop".
 - **Timeout or dropped connection:** don't resend straight away. Read back whether the records
   arrived, where this account can. If they did, go on. If not, or if you can't read them, send the
@@ -546,7 +546,7 @@ typically:
 - a production annotation on the date of the story's moment, such as when a fix started, so the
   presenter can point at it;
 - anything on screen that would otherwise look half-done next to the records in the script, such
-  as the status of every machine on a line that is shown. If the walkthrough says new machines
+  as the status of every machine on a line that is shown. If the tutorial says new machines
   start inactive, add a step to activate each machine;
 - issues made through the API are New, with unassigned actions, and logged by the `claude-demo`
   account. If the script says someone took on an issue, add a step: that person, in the
@@ -597,10 +597,10 @@ curl -sS --proto '=https' --max-time 120 --netrc-file "$HOME/.factorise/netrc" -
 - **On Windows**, write `curl.exe` instead of `curl`, and `"$USERPROFILE/.factorise/netrc"` as the
   file (`"$env:USERPROFILE/.factorise/netrc"` if the shell is PowerShell). That's where the
   connect script saves it.
-- For orders, readings and issues, use the base path the quick start gives for them.
+- For orders, readings and issues, use the base path in `factorise-api/reference/services.md`.
 - Never add `-v`, `-u`, `--trace` or `-L`. They can print or forward the login.
 
 **Reading back.** For a read, drop `-H`, `-X POST` and `--data-binary`. Which endpoints answer a
-read, and in what shape, is in `factorise-api/write/how-rest-writes-work.md` and the endpoint
+read, and in what shape, is in `factorise-api/concepts/how-rest-writes-work.md` and the endpoint
 reference; time series are read through the readings service. What this account may read differs
 per environment: try a read once, and if it answers 403, 404 or 405, don't retry it in this run.

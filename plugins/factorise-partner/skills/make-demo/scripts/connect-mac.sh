@@ -37,7 +37,7 @@ failed() {
   echo "Not saved: the login window couldn't open on this Mac."; exit 4
 }
 
-u=$(ask "User name of the Factorise account you made for Claude (role: Webhook):" plain) || failed
+u=$(ask "User name of the Factorise account you made for Claude:" plain) || failed
 p=$(ask "Password for $u. It goes straight into a file only you can read, not into the chat." hidden) || failed
 
 for v in "$u" "$p"; do
