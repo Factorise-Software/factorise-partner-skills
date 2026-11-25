@@ -34,7 +34,7 @@ start with the docs check (see "The docs"):
 
 - **A new demo.** Open with one message: the four parts in four short lines, that nothing is
   sent to their environment until they've seen the plan and said yes, and, if the docs must be
-  downloaded, what to expect of that. Then part 1.
+  downloaded, the question docs.md gives. Then part 1.
 - **A change to a demo that's built** ("rename line 2", "make the bad week worse"), sending a
   demo again, or removing its orders. No interview: connect, and follow "Change a demo that's
   there" in build.md.
@@ -55,7 +55,7 @@ message in this chat counts as a yes.
 This skill does only these things:
 
 - run the docs command, which opens the docs pack's address on docs.factorise-suite.com in the
-  partner's own browser, and read the pages it unpacks;
+  partner's own browser, after their yes, and read the pages it unpacks;
 - read files the partner gives you, and keep a copy of documentation they give you for an
   environment's own API extensions in `factorise-custom-api` in the current working folder;
 - run the connect command;
@@ -155,8 +155,9 @@ every page: the file, its title, and its address on the site. This skill names p
 title. Find the file in the index.
 
 **Check the pack before the first question**, with the docs command. On "Ready", go on, and say
-nothing about the docs. On anything else, read docs.md and follow it. Never go on without the
-docs.
+nothing about the docs. On anything else, read docs.md and follow it: a download opens the
+partner's browser, so it only happens after you've said what it does and they've said yes.
+Never go on without the docs.
 
 **The pack is the truth about Factorise, not this skill.** This skill knows how to run the
 project. How the app and the API work, such as what can be created, read or changed, a field

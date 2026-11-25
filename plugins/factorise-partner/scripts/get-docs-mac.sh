@@ -5,7 +5,8 @@
 #
 #   bash get-docs-mac.sh <folder to unpack into> [refresh|check]
 #
-# "check" only says whether a download is needed, and opens nothing.
+# "check" only says whether a download is needed ("Needed"), or due for a pack that's getting
+# old ("Renew"), and opens nothing.
 # "refresh" replaces a pack that is already there with a newly downloaded one. A pack downloaded
 # more than 14 days ago is replaced too, and kept if no new one arrives.
 set -u
@@ -118,7 +119,10 @@ use() {
 # One that can't be used is skipped here, and a new one is downloaded.
 recent=$(newest -mmin -60)
 if [ -n "$recent" ] && out=$(keep=""; use "$recent"); then echo "$out"; exit 0; fi
-if [ "$refresh" = "check" ]; then echo "Needed: a docs pack has to be downloaded."; exit 0; fi
+if [ "$refresh" = "check" ]; then
+  if [ -n "$keep" ]; then echo "Renew: docs pack of $keep, downloaded more than 14 days ago."; exit 0; fi
+  echo "Needed: a docs pack has to be downloaded."; exit 0
+fi
 
 touch "$work/start"
 open "$url" 2>/dev/null || stop 4 "Not ready: couldn't open the browser on this Mac."

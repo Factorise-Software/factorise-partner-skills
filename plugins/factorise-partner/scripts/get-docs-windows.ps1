@@ -4,7 +4,8 @@
 #
 #   powershell.exe -NoProfile -ExecutionPolicy Bypass -File get-docs-windows.ps1 <folder to unpack into> [refresh|check]
 #
-# "check" only says whether a download is needed, and opens nothing.
+# "check" only says whether a download is needed ("Needed"), or due for a pack that's getting
+# old ("Renew"), and opens nothing.
 # "refresh" replaces a pack that is already there with a newly downloaded one. A pack downloaded
 # more than 14 days ago is replaced too, and kept if no new one arrives.
 param([string]$Dest = "", [string]$Refresh = "")
@@ -135,6 +136,7 @@ $recent = Newest ((Get-Date).AddMinutes(-60))
 if ($recent) { Use $recent $true }
 if ($Refresh -eq "check") {
   Remove-Item -Recurse -Force $work
+  if ($keep -ne "") { Write-Output "Renew: docs pack of $keep, downloaded more than 14 days ago."; exit 0 }
   Write-Output "Needed: a docs pack has to be downloaded."; exit 0
 }
 
