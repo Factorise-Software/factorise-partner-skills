@@ -1,12 +1,18 @@
 {
   "name": "factorise-partner",
   "displayName": "Factorise for partners",
-  "version": "0.4.1",
-  "description": "Shape a Factorise demo idea with Claude, then let Claude build it in your own Factorise environment.",
+  "version": "0.5.0",
+  "description": "Shape and build a Factorise demo with Claude, or let Claude configure a Factorise environment from your data.",
   "author": {
     "name": "Factorise Software"
   },
   "homepage": "https://github.com/Factorise-Software/factorise-partner-skills",
   "repository": "https://github.com/Factorise-Software/factorise-partner-skills",
-  "keywords": ["factorise", "manufacturing", "demo", "mes"]
+  "keywords": [
+    "factorise",
+    "manufacturing",
+    "demo",
+    "mes",
+    "configuration"
+  ]
 }

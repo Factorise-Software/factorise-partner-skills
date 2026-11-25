@@ -1,4 +1,7 @@
 .DS_Store
 factorise-demo-*/
+factorise-config-*/
+factorise-custom-api/
+factorise-reads/
 factorise-docs/
 factorise-docs-pack*
