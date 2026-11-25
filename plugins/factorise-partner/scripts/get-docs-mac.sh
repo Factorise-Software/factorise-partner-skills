@@ -101,7 +101,7 @@ use() {
   if [ -z "$root" ] || [ ! -f "$root/INDEX.md" ] || ! grep -qE '"format" *: *1[^0-9]' "$root/pack.json"; then
     # A pack in a newer format is ours, and no use to this version: don't leave it in Downloads.
     [ -n "$root" ] && [ -f "$root/INDEX.md" ] && rm -rf "$src"
-    stop 3 "Not ready: the downloaded file isn't a docs pack this version of make-demo can read."
+    stop 3 "Not ready: the downloaded file isn't a docs pack this version of the plugin can read."
   fi
   if [ -e "$old" ] || ! mkdir -p "$(dirname "$dest")"; then stop 4 "Not ready: couldn't write to $dest."; fi
   if [ -e "$dest" ] && ! mv "$dest" "$old"; then stop 4 "Not ready: couldn't write to $dest."; fi

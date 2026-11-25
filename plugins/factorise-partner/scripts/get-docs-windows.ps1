@@ -110,7 +110,7 @@ function Use($zip, $skipUnusable = $false) {
   # A pack in a newer format is ours, and no use to this version: don't leave it in Downloads.
   if (-not $ok -and $packFile -and (Test-Path (Join-Path $root "INDEX.md"))) { Remove-Item -Force $zip.FullName }
   if (-not $ok) {
-    Stop 3 "Not ready: the downloaded file isn't a docs pack this version of make-demo can read."
+    Stop 3 "Not ready: the downloaded file isn't a docs pack this version of the plugin can read."
   }
   # Keep the pack that's there until the new one is in place.
   if (Test-Path -LiteralPath $old) { Stop 4 "Not ready: couldn't write to $Dest." }

@@ -8,7 +8,7 @@
     {
       "name": "factorise-partner",
       "source": "./plugins/factorise-partner",
-      "description": "Shape a Factorise demo idea with Claude, then let Claude build it in your own Factorise environment."
+      "description": "Shape and build a Factorise demo with Claude, or let Claude configure a Factorise environment from your data."
     }
   ]
 }
