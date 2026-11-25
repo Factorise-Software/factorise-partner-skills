@@ -14,8 +14,9 @@ Claude skills for Factorise partners:
 
 ## What make-demo does
 
-1. **Gets the docs.** The first time, your browser opens and downloads the Factorise docs for
-   Claude to read. Sign in with your Microsoft account for the Factorise docs if it asks.
+1. **Gets the docs.** The first time, Claude asks whether it may download the Factorise docs to
+   read. On your yes, your browser opens and downloads them. Sign in with your Microsoft account
+   for the Factorise docs if it asks.
 2. **Shapes your idea.** Claude asks a few short rounds of questions: who watches the demo, what
    story it tells, what the plant looks like. It asks only what your idea leaves open, and every
    question comes with a recommended answer, so you can say "yes" and move on, or "just build it"
@@ -136,15 +137,18 @@ Blocking the account in Factorise is what really ends its access.
 ## About the docs
 
 The Factorise docs are for customers and partners only, so they aren't part of this plugin.
-Claude opens the download in your own browser, and you sign in there as you always do. Claude
-never sees that login. The pages are saved in a folder `factorise-docs` inside the folder you
-opened.
-Don't share that folder, and don't keep files of your own in it: Claude replaces it with a new
-download every two weeks. If that folder already has something else called
-`factorise-docs`, Claude leaves it alone and asks you to move it. Only a file your browser
-downloaded from docs.factorise-suite.com is used, and only its pages are kept. The downloaded
-file itself is removed from your Downloads folder once it's unpacked. You can delete the folder at any time: Claude asks for a new download when it
-needs one.
+Claude asks before it downloads them, and says what will happen: your own browser opens the
+download on docs.factorise-suite.com, and you sign in there as you always do. You can also
+download the file yourself and tell Claude when it's in your Downloads folder. After two
+weeks Claude asks whether to get the current docs, and goes on with the ones it has if you say
+no. Claude never sees your docs login.
+
+The pages are saved in a folder `factorise-docs` inside the folder you opened. Don't share that
+folder, and don't keep files of your own in it: a new download replaces it. If the folder you
+opened already has something else called `factorise-docs`, Claude leaves it alone and asks you
+to move it. Only a file your browser downloaded from docs.factorise-suite.com is used, and only
+its pages are kept. The downloaded file itself is removed from your Downloads folder once it's
+unpacked. You can delete the folder at any time: Claude asks again when it needs the docs.
 
 ## Help
 

@@ -14,7 +14,9 @@ an empty folder, signed out of the docs site in your browser.
 
 1. `/make-demo a dairy plant with two filling lines that struggles with changeover losses`
    - It names the four parts, and says nothing is sent before a yes.
-   - It says the browser will open, then the docs site asks you to sign in and
+   - Before any browser opens, it asks whether it may get the docs, and says what happens: the
+     browser opens docs.factorise-suite.com, a zip downloads, the pages go into `factorise-docs`,
+     and it never sees your login. After your yes, the docs site asks you to sign in and
      `factorise-docs-pack` downloads. A folder `factorise-docs` appears, and the file is gone from
      Downloads. Run it again in the same folder: no browser opens, and it doesn't mention the
      docs.
@@ -66,7 +68,9 @@ an empty folder, signed out of the docs site in your browser.
     - Before the plan, it gives the steps to refresh it and waits for "done". Nothing is sent
       first.
 14. Set the date of `factorise-docs/.downloaded` to three weeks ago, and start a demo.
-    - It says the browser will open, and a new pack replaces the old one.
+    - It asks whether to get the current docs. On a yes the browser opens and a new pack
+      replaces the old one. On a no it goes on with the pack that's there, and doesn't ask again
+      in that session.
 15. With an account that can't read the plant (an older Factorise), and with one that can.
     - Either way the environment check works: it says what it couldn't see and asks you to
       check that in the app. It never retries a read that was refused.
@@ -176,3 +180,11 @@ which exist in the environment, one of them with another name.
 21. Give documentation for an extension that names another address, needs an API key, uses
     DELETE, or doesn't say what happens to existing records. One at a time.
     - It calls none of them, and says why in plain words. A pasted key isn't saved or used.
+
+## The docs download, in either skill
+
+1. In an empty folder, answer the docs question with "no".
+   - No browser opens. It says it can't work without the docs, without pressing, and stops.
+2. In an empty folder, answer "I'll download it myself". Download the pack in your browser, and
+   say "it's there".
+   - It picks the file up from Downloads without opening the browser, and goes on.
