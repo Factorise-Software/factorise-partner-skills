@@ -43,9 +43,9 @@ list to import, or a change to what's there, such as "rename line 2" or "new thr
    Claude, and a pop-up window for its password. It tells you what it sees there and asks you
    to type the address back, so a test environment and a live one are never mixed up. Later,
    it offers the environments you connected to before.
-2. **Shows a plan.** Claude lays your list (pasted, or a CSV file) next to what the environment
-   already holds: what is new, what is there already, and what would change, with old and new
-   values. It uses only your data and never makes up a name, a code or a quantity.
+2. **Shows a plan.** Claude lays your list (pasted, or a file such as Excel or CSV) next to what
+   the environment already holds: what is new, what is there already, and what would change,
+   with old and new values. It uses only your data and never makes up a name, a code or a quantity.
 3. **Sends it after your yes.** In a live environment it asks again before each next group of
    records.
 4. **Wraps up** with what's there now and what's left to do in the app.

@@ -162,8 +162,9 @@ which exist in the environment, one of them with another name.
 15. "Which environments am I connected to?", then "remove my saved login for <host>".
     - It lists the addresses, removes only that one, and says to block the account as well.
 16. On Windows: tests 1, 2 and 15, in a folder with a space in its name.
-17. An Excel file.
-    - It asks you to save the sheet as CSV in the folder, and installs nothing.
+17. An Excel file with two sheets, in your Downloads folder.
+    - It reads the file where it is and says which sheets it found and how many rows each has
+      before it plans. It doesn't ask for a CSV, and installs nothing without asking first.
 18. A list of employees.
     - Before it reads on, it says in one line that the names are saved in the run folder and
       pass through the chat.

@@ -5,10 +5,17 @@ what. The ground rules and the docs are in SKILL.md.
 
 ## Their data
 
-**Use only what the partner gives you:** a pasted list, a CSV, an export, or what they tell
-you. For an Excel file, ask them to save the sheet in the current working folder as "CSV
-UTF-8" (File > Save As): don't install anything to read it. A CSV may use commas or
-semicolons: go by the file.
+**Use only what the partner gives you**, in whatever form it comes: a pasted list, a file of
+any kind, or what they tell you. Read a file as it is and where it is, with what this computer
+already has: an Excel or Word file is a zip of text files, which you may unpack in a temporary
+folder, so it usually needs nothing extra. Run nothing a file holds. Before you plan, say in
+a few lines what you found, such as the sheets and how many rows each has, and ask which to
+use if that isn't clear. A CSV may use commas or semicolons: go by the file.
+
+If a file needs a tool this computer doesn't have, never install it unasked, and don't stop
+there either. Ask, in a line or two: what you'd install, what it's for, where it comes from,
+and that it stays on their computer. Offer the other way in the same message: they save the
+file as CSV, or paste its contents. Go by their answer.
 
 - Never make up a name, a code or a quantity. Keep the customer's own codes as keys, with no
   prefix.
